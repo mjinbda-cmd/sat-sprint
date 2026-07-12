@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#6C3BF4">
+<title>SAT Sprint</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="SAT Sprint">
+<style>
+  /* Self-hosted variable fonts (latin subset) — no network needed */
+  @font-face{font-family:'DM Sans';font-style:normal;font-weight:100 1000;font-display:swap;src:url('fonts/DMSans.woff2') format('woff2');}
+  @font-face{font-family:'Space Grotesk';font-style:normal;font-weight:300 700;font-display:swap;src:url('fonts/SpaceGrotesk.woff2') format('woff2');}
+
+  html,body{height:100%;}
+  html{-webkit-text-size-adjust:100%;}
+  body{margin:0;background:#F3F0FC;color:#241A50;font-family:'DM Sans',sans-serif;line-height:1.5;
+       padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+       -webkit-tap-highlight-color:transparent;}
+  a{color:#6C3BF4;font-weight:700;} a:hover{color:#4B21C4;}
+  *{box-sizing:border-box;}
+  @keyframes popIn{from{opacity:0;transform:translateY(8px) scale(.98);}to{opacity:1;transform:none;}}
+
+  /* Stat rows (results + progress): label stacks above the bar on narrow screens */
+  .srow{display:flex;align-items:center;gap:12px;margin:9px 0;font-size:14px;}
+  .srow-label{width:230px;flex-shrink:0;font-weight:500;}
+  .srow-bar{flex:1;height:14px;background:#ECE9F8;border-radius:99px;overflow:hidden;}
+  .srow-pct{width:48px;text-align:right;font-weight:800;font-size:13.5px;}
+  @media (max-width:560px){
+    .srow{flex-wrap:wrap;row-gap:2px;}
+    .srow-label{width:100%;}
+  }
+
+  /* ---- Hover interactions (ported from the design's style-hover rules) ---- */
+  .btn-lilac:hover{background:#ECE5FE !important;}
+  .btn-quit:hover{background:#F3F0FC !important;}
+  .btn-primary:hover{background:#5A2BE0 !important;transform:translateY(-1px);}
+  .btn-ghost:hover{background:#F3F0FC !important;}
+  .btn-clear:hover{background:#FBD2DF !important;}
+
+  .mode-card{transition:.12s;}
+  .mode-card:hover{transform:translateY(-2px);box-shadow:0 5px 0 #241A50 !important;}
+  .mc-rw:hover{background:#F7F4FF !important;}
+  .mc-math:hover{background:#F0FBFC !important;}
+  .mc-quick:hover{background:#EFFAF3 !important;}
+  .mc-hard:hover{background:#FEF0F4 !important;}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script src="questions.js"></script>
+<script src="app.js"></script>
+<script>
+  // Offline support — only when served over http(s); the single-file build opens via file://.
+  if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+    navigator.serviceWorker.register('sw.js');
+  }
+</script>
+</body>
+</html>
